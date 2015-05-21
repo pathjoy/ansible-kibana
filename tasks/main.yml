@@ -10,6 +10,9 @@
   get_url: url=https://download.elasticsearch.org/kibana/kibana/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.zip
            dest=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.zip
 
+- name: Create kibana directory
+  file: path={{ kibana_dir }} state=directory owner=kibana group=kibana mode=0755
+
 - name: Extract and install Kibana
   unarchive: src=/usr/local/src/kibana-{{ kibana_version }}-{{ kibana_os }}-{{ kibana_arch }}.zip
              dest={{ kibana_dir }}
